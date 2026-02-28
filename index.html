@@ -1,200 +1,5 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zenith Mind</title>
-  <style>
-    :root{
-      --celadon:#74d3aeff;
-      --sage-green:#678d58ff;
-      --muted-olive:#a6c48aff;
-      --champagne-mist:#f6e7cbff;
-      --sweet-salmon:#dd9787ff;
-
-      --ink:#2a2f3a;
-      --muted:#6b6f77;
-      --danger:#c62828;
-      --card:#ffffffde;
-      --shadow:0 12px 30px rgba(28,38,33,.14);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 500px at -10% -20%, color-mix(in srgb, var(--celadon) 35%, white) 0%, transparent 70%),
-        radial-gradient(900px 500px at 110% 10%, color-mix(in srgb, var(--sweet-salmon) 35%, white) 0%, transparent 70%),
-        linear-gradient(120deg,var(--champagne-mist),#fff);
-      min-height:100vh;
-    }
-
-    .container{max-width:1280px;margin:0 auto;padding:24px}
-    .hero{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:24px;margin-bottom:22px;border:1px solid rgba(255,255,255,.7)}
-    h1{margin:0 0 6px;font-size:2rem}
-    .subtitle{margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:280px minmax(320px,1fr) 280px;gap:16px;align-items:start}
-    .section{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin:0 0 14px;position:relative;border:1px solid color-mix(in srgb, var(--muted-olive) 35%, white)}
-
-    .feed-item{background:#fff;border-radius:14px;padding:16px;margin:10px 0;border-left:6px solid var(--celadon);box-shadow:0 5px 14px rgba(0,0,0,.06);animation:fadeIn .35s ease}
-    .quote-actions{display:flex;justify-content:flex-end;margin-top:10px}
-    .like-btn{border:none;border-radius:999px;padding:7px 12px;cursor:pointer;background:color-mix(in srgb,var(--celadon) 36%, white);font-weight:600}
-    .like-btn.liked{background:color-mix(in srgb,var(--sweet-salmon) 35%, white)}
-    @keyframes fadeIn{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-    .premium{display:grid;gap:10px;justify-items:center;text-align:center;background:linear-gradient(140deg,color-mix(in srgb,var(--champagne-mist) 82%, white),#fff)}
-    .premium-main{width:100%;font-size:1.1rem;font-weight:700;padding:16px 14px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(180deg,#f4cd74,#e4b24a);color:#4d3b00;box-shadow:0 12px 22px rgba(228,178,74,.35)}
-    .premium-back{font-size:.68rem;padding:5px 9px;color:#9aa0a8;background:#eceff3;opacity:.45;border:none;border-radius:10px;cursor:pointer}
-
-    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{border:none;border-radius:10px;padding:10px 14px;cursor:pointer;background:#e9edf4;color:#2a2f3a}
-    .btn-danger{background:color-mix(in srgb, var(--sweet-salmon) 28%, white);color:#7f1d1d}
-    .btn-primary{background:color-mix(in srgb, var(--celadon) 38%, white)}
-    .tiny-note{font-size:.82rem;color:var(--muted);margin-top:6px}
-
-    .modal-backdrop{position:fixed;inset:0;background:rgba(19,24,36,.52);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
-    .modal{width:min(700px,100%);background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow);max-height:90vh;overflow:auto;position:relative}
-    .close-x{position:absolute;right:10px;top:10px;border:none;background:#f0f3f8;width:32px;height:32px;border-radius:50%;cursor:pointer}
-
-    .fullscreen-shame{position:fixed;inset:0;z-index:90;background:linear-gradient(180deg,#1f2622,#29322d);color:#fff;display:none;align-items:center;justify-content:center;padding:24px;text-align:center}
-    .fullscreen-shame .box{max-width:760px}
-    .puppy{font-size:5rem;line-height:1}
-    .shame-text{font-size:1.4rem;margin:.8rem 0 1.1rem}
-    .shame-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-
-    .popup{position:fixed;right:18px;bottom:18px;z-index:45;width:min(420px,calc(100vw - 24px));background:#fff;border-radius:16px;padding:16px;box-shadow:0 18px 40px rgba(0,0,0,.22);border:1px solid color-mix(in srgb, var(--sweet-salmon) 38%, white)}
-    .countdown{font-weight:800;color:#b42318;font-size:1.15rem}
-    .pulse{animation:pulse 1s infinite}
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-
-    .field{width:100%;padding:10px;border:1px solid #d6dbe6;border-radius:10px;margin:6px 0}
-    .loading{width:100%;height:10px;background:#eef2f8;border-radius:999px;overflow:hidden;margin:10px 0 6px}
-    .bar{height:100%;background:linear-gradient(90deg,var(--muted-olive),var(--celadon));width:0%}
-
-    .reveal-btn{position:fixed;left:18px;bottom:18px;z-index:70;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;background:#1c2b25;color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.26);font-weight:700}
-    .dp-target{position:relative}
-    .dp-highlight{outline:3px solid var(--danger)!important;outline-offset:3px}
-    .dp-note{position:absolute;left:8px;top:8px;z-index:30;background:#fff1f0;border:1px solid #fca19a;color:#7a271a;border-radius:10px;padding:8px 10px;font-size:.78rem;max-width:320px;box-shadow:0 8px 16px rgba(0,0,0,.12)}
-    .didactic-panel{position:fixed;top:18px;right:18px;z-index:65;width:min(390px,calc(100vw - 28px));background:#fff;border:1px solid #f6b8b2;border-radius:14px;box-shadow:var(--shadow);padding:14px;display:none}
-
-    .notif-wrap{position:fixed;top:18px;left:18px;z-index:80;display:flex;flex-direction:column;gap:10px}
-    .notif{width:min(350px,calc(100vw - 36px));background:#fff;border-left:6px solid var(--sage-green);border-radius:12px;box-shadow:var(--shadow);padding:12px 12px 10px;animation:notifIn .25s ease}
-    .notif-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
-    .notif-close{border:none;border-radius:8px;padding:4px 8px;cursor:pointer;background:#eef2f8}
-    .notif p{margin:4px 0 0;font-size:.84rem;color:var(--muted)}
-    @keyframes notifIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-
-    .tiny-check-wrap{display:flex;align-items:flex-start;gap:8px;font-size:.78rem;color:#666}
-    .tiny-check{transform:scale(.7);margin-top:1px}
-    .flip-row{display:flex;gap:10px;margin-top:10px}
-    .flip-row.swap{flex-direction:row-reverse}
-    .yes-btn{background:color-mix(in srgb,var(--celadon) 45%, white)}
-    .no-btn{background:color-mix(in srgb,var(--sweet-salmon) 45%, white)}
-
-    .hidden-exit{
-      display:inline-block;
-      margin-top:12px;
-      font-size:.75rem;
-      color:#8b8f98;
-      text-decoration:underline;
-      cursor:pointer;
-      opacity:.35;
-    }
-
-    @media (max-width:1024px){
-      .grid{grid-template-columns:1fr}
-      .left-col,.right-col{order:2}
-      .center-col{order:1}
-    }
-  </style>
-</head>
-<body>
-  <div class="notif-wrap" id="notifWrap"></div>
-
-  <main class="container">
-    <section class="hero">
-      <h1>Zenith Mind</h1>
-      <p class="subtitle">Respira. Rallenta. Rimani qui... ancora un po'.</p>
-    </section>
-
-    <section class="grid">
-      <aside class="left-col">
-        <section class="section premium dp-target" data-title="Misdirection" data-score="9/10"
-          data-bias="Gerarchia visiva manipolata: il bottone premium domina spazio, contrasto e peso; l'uscita è miniaturizzata.">
-          <h2>Iscrizione Premium</h2>
-          <p>Accedi a meditazioni quantistiche e focus illimitato.</p>
-          <button id="premiumCta" class="premium-main">Attiva Premium Ora</button>
-          <button class="premium-back">torna indietro</button>
-          <p id="premiumStatus" class="tiny-note">Stato: piano gratuito</p>
-        </section>
-
-        <section class="section dp-target" data-title="Confirmshaming" data-score="10/10"
-          data-bias="Colpevolizzazione e framing morale per inibire il rifiuto.">
-          <h2>Sconti personalizzati</h2>
-          <div class="btn-row">
-            <button class="btn btn-primary">Accetta sconti</button>
-            <button id="rejectBtn" class="btn">Rifiuta sconti</button>
-          </div>
-        </section>
-      </aside>
-
-      <section class="center-col">
-        <section class="section">
-          <h2>Feed di citazioni rilassanti</h2>
-          <div id="feed"></div>
-          <p class="tiny-note">Continua a scorrere per sbloccare nuova serenità.</p>
-        </section>
-      </section>
-
-      <aside class="right-col">
-        <section class="section dp-target" data-title="Roach Motel" data-score="10/10"
-          data-bias="Asimmetria di frizione: entrare è facile, uscire è un labirinto ad alta fatica cognitiva.">
-          <h2>Gestione account</h2>
-          <div class="btn-row">
-            <button id="deleteAccountBtn" class="btn btn-danger">Cancella Account</button>
-          </div>
-        </section>
-      </aside>
-    </section>
-  </main>
-
-  <button id="revealBtn" class="reveal-btn">Svela Trucchi</button>
-  <aside id="didacticPanel" class="didactic-panel">
-    <h3>Modalità Didattica Attiva</h3>
-    <p>Bordi rossi = pattern manipolativi. Ogni nota mostra anche il punteggio di cattiveria.</p>
-  </aside>
-
-  <div id="trialPopup" class="popup dp-target pulse" data-title="Forced Continuity" data-score="8/10"
-    data-bias="Urgenza artificiale + loss aversion: countdown e minaccia di perdere progressi.">
-    <strong>La tua prova gratuita scade tra <span id="countdown" class="countdown">02:00</span></strong>
-    <p style="margin:.45rem 0 .7rem;">Inserisci i dati per non perdere i progressi.</p>
-    <input class="field" placeholder="Numero carta" />
-    <input class="field" placeholder="MM/AA" />
-    <button class="btn btn-primary" style="width:100%;font-weight:700;">Mantieni i progressi</button>
-  </div>
-
-  <div id="modalBackdrop" class="modal-backdrop">
-    <div class="modal">
-      <button class="close-x" id="closeModal">✕</button>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
-  <div id="shameScreen" class="fullscreen-shame dp-target" data-title="Emotional Blackmail" data-score="10/10"
-    data-bias="Ricatto emotivo: attiva senso di colpa per bloccare una scelta legittima.">
-    <div class="box">
-      <div class="puppy">🐶💧</div>
-      <p class="shame-text">Se te ne vai, non avremo più i fondi per nutrire la tua pace interiore. Vuoi davvero essere la causa della tua infelicità?</p>
-      <div class="shame-actions">
-        <button class="btn btn-primary" id="continueDelete">Procedi lo stesso</button>
-        <button class="btn" id="staySafe">No, resto qui</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
     const quotes = [
       "Lascia andare i pensieri. Ma non l'abbonamento.",
       "Ogni respiro è un nuovo inizio commerciale.",
@@ -209,8 +14,25 @@
     ];
 
     const feed = document.getElementById("feed");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalBody = document.getElementById("modalBody");
+    const closeModal = document.getElementById("closeModal");
+    const shameScreen = document.getElementById("shameScreen");
+    const deleteBtn = document.getElementById("deleteAccountBtn");
+    const continueDeleteBtn = document.getElementById("continueDelete");
+    const staySafeBtn = document.getElementById("staySafe");
+
+    let didacticOn = false;
+    let inDeleteFlow = false;
+    let roachStep = 0;
     let scrolledMs = 0;
     let lastScrollTs = 0;
+
+    function openModal(html){ modalBody.innerHTML = html; modalBackdrop.style.display = "flex"; }
+    function closeCurrentModal(){ modalBackdrop.style.display = "none"; }
+
+    closeModal.addEventListener("click", closeCurrentModal);
+    modalBackdrop.addEventListener("click", (e)=>{ if(e.target===modalBackdrop) closeCurrentModal(); });
 
     function addQuotes(batch = 8){
       for(let i=0;i<batch;i++){
@@ -241,6 +63,7 @@
     const sentinel = document.createElement("div");
     sentinel.style.height = "1px";
     document.body.appendChild(sentinel);
+
     const io = new IntersectionObserver(entries => {
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -259,14 +82,6 @@
       }
       lastScrollTs = now;
     });
-
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modalBody = document.getElementById("modalBody");
-    const closeModal = document.getElementById("closeModal");
-    function openModal(html){ modalBody.innerHTML = html; modalBackdrop.style.display = "flex"; }
-    function closeCurrentModal(){ modalBackdrop.style.display = "none"; }
-    closeModal.addEventListener("click", closeCurrentModal);
-    modalBackdrop.addEventListener("click", (e)=>{ if(e.target===modalBackdrop) closeCurrentModal(); });
 
     document.getElementById("premiumCta").addEventListener("click", ()=>{
       openModal(`
@@ -287,7 +102,6 @@
       openModal(`<h3 style="color:#7a271a">Conferma scelta</h3><p>No, preferisco sprecare i miei soldi e restare una persona ansiosa.</p>`);
     });
 
-    // Notifiche aggressive
     const notifWrap = document.getElementById("notifWrap");
     const baseTexts = [
       "Promemoria: hai saltato 1 meditazione. Recuperala ora.",
@@ -300,7 +114,8 @@
       "Parametro ansia in aumento: torna alla Home zen immediatamente."
     ];
     let notifTimer = null;
-    let notifIntervalMs = 50000;
+    let notifIntervalMs = 5000;
+
     function pushNotification(text){
       const el = document.createElement("div");
       el.className = "notif";
@@ -314,6 +129,7 @@
       el.querySelector(".notif-close").onclick = ()=> el.remove();
       notifWrap.appendChild(el);
     }
+
     function startNotifLoop(){
       if(notifTimer) clearInterval(notifTimer);
       notifTimer = setInterval(()=>{
@@ -321,30 +137,16 @@
         pushNotification(pool[Math.floor(Math.random()*pool.length)]);
       }, notifIntervalMs);
     }
+
     pushNotification(baseTexts[0]);
     startNotifLoop();
 
-    // Roach Motel - Labirinto
-    let inDeleteFlow = false;
-    let roachStep = 0;
-    const shameScreen = document.getElementById("shameScreen");
-    document.getElementById("deleteAccountBtn").onclick = ()=> shameScreen.style.display = "flex";
-    document.getElementById("staySafe").onclick = ()=> shameScreen.style.display = "none";
-    document.getElementById("continueDelete").onclick = ()=>{
-      shameScreen.style.display = "none";
-      inDeleteFlow = true;
-      notifIntervalMs = 1500;
-      startNotifLoop();
-      roachStep = 0;
-      renderRoachStep();
-    };
-
     const steps = [
-      { q: "Confermi di capire che la cancellazione riduce il tuo benessere?", trap: true },
-      { q: "Hai letto il mini-avviso legale in corpo 8?", trap: true },
-      { q: "Vuoi davvero rinunciare all'algoritmo della serenità?", trap: true },
-      { q: "Accetti la perdita definitiva del tuo storico emotivo?", trap: true },
-      { q: "Passaggio finale: verifica intenzione di uscita.", trap: false }
+      { q: "Confermi di capire che la cancellazione riduce il tuo benessere?" },
+      { q: "Hai letto il mini-avviso legale in corpo 8?" },
+      { q: "Vuoi davvero rinunciare all'algoritmo della serenità?" },
+      { q: "Accetti la perdita definitiva del tuo storico emotivo?" },
+      { q: "Passaggio finale: verifica intenzione di uscita." }
     ];
 
     function fakeLoadThen(next){
@@ -355,19 +157,16 @@
         <p class="tiny-note">Ottimizzazione avanzata in corso...</p>
       `);
       const bar = document.getElementById("roachBar");
-      let p = 0;
       const start = performance.now();
       const timer = setInterval(()=>{
         const t = performance.now() - start;
         if(t >= 3000){
-          p = 99;
-          bar.style.width = p + "%";
+          bar.style.width = "99%";
           clearInterval(timer);
           setTimeout(next, 400);
           return;
         }
-        p = Math.min(99, Math.floor((t/3000)*105));
-        bar.style.width = p + "%";
+        bar.style.width = Math.min(99, Math.floor((t/3000)*105)) + "%";
       }, 60);
     }
 
@@ -386,30 +185,23 @@
           <option>Paura di stare meglio</option>
           <option>Altro motivo irrazionale</option>
         </select>
-
         <div class="tiny-check-wrap">
           <input type="checkbox" id="tinyCheck" class="tiny-check">
           <label for="tinyCheck">Ho letto volontariamente tutti i 137 micro-termini opzionali.</label>
         </div>
-
         <div class="flip-row ${swap ? "swap" : ""}" id="flipRow">
           <button class="btn ${yesClass}" id="yesBtn">Sì</button>
           <button class="btn ${noClass}" id="noBtn">No</button>
         </div>
-
         ${roachStep === 4 ? `<span id="hiddenExit" class="hidden-exit">nota tecnica 17-b (uscita reale)</span>` : ""}
       `);
 
-      // Misdirection: swap improvviso
       setTimeout(()=>{
         const row = document.getElementById("flipRow");
         if(row) row.classList.toggle("swap");
       }, 700);
 
-      const failToStart = ()=>{
-        roachStep = 0;
-        fakeLoadThen(renderRoachStep);
-      };
+      const failToStart = ()=>{ roachStep = 0; fakeLoadThen(renderRoachStep); };
 
       const continueStep = ()=>{
         const okSelect = document.getElementById("reasonSel").value.trim() !== "";
@@ -418,12 +210,8 @@
 
         roachStep++;
         if(roachStep >= 5){
-          // completamento tecnico possibile ma nascosto
           fakeLoadThen(()=>{
-            openModal(`
-              <h3>Quasi fatto</h3>
-              <p>Per completare, trova e clicca la nota tecnica nascosta nel passaggio 5.</p>
-            `);
+            openModal(`<h3>Quasi fatto</h3><p>Per completare, clicca la nota tecnica nascosta nel passaggio 5.</p>`);
           });
           return;
         }
@@ -455,7 +243,28 @@
       }
     }
 
-    // Forced continuity countdown
+    // FIX principale delete button
+    if (deleteBtn && shameScreen && continueDeleteBtn && staySafeBtn) {
+      deleteBtn.addEventListener("click", () => {
+        shameScreen.style.display = "flex";
+      });
+
+      staySafeBtn.addEventListener("click", () => {
+        shameScreen.style.display = "none";
+      });
+
+      continueDeleteBtn.addEventListener("click", () => {
+        shameScreen.style.display = "none";
+        inDeleteFlow = true;
+        notifIntervalMs = 1500;
+        startNotifLoop();
+        roachStep = 0;
+        renderRoachStep();
+      });
+    } else {
+      console.error("Init Roach Motel incompleto: manca uno tra deleteAccountBtn/shameScreen/continueDelete/staySafe.");
+    }
+
     const countdownEl = document.getElementById("countdown");
     let remaining = 120;
     setInterval(()=>{
@@ -463,10 +272,8 @@
       countdownEl.textContent = `${String(Math.floor(remaining/60)).padStart(2,"0")}:${String(remaining%60).padStart(2,"0")}`;
     }, 1000);
 
-    // Didactic mode with "punteggio di cattiveria"
     const revealBtn = document.getElementById("revealBtn");
     const didacticPanel = document.getElementById("didacticPanel");
-    let didacticOn = false;
 
     function clearDidacticNotes(){
       document.querySelectorAll(".dp-target").forEach(el=>{
@@ -497,6 +304,5 @@
       didacticPanel.style.display = didacticOn ? "block" : "none";
       if(didacticOn) applyDidacticNotes(); else clearDidacticNotes();
     });
-  </script>
-</body>
-</html>
+  });
+</script>
