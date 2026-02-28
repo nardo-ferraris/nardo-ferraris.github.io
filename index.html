@@ -34,7 +34,6 @@
     .container{max-width:1280px;margin:0 auto;padding:24px}
     .hero{
       background:var(--card);
-      backdrop-filter: blur(8px);
       border-radius:20px;
       box-shadow:var(--shadow);
       padding:24px;
@@ -70,130 +69,61 @@
       box-shadow:0 5px 14px rgba(0,0,0,.06);
       animation:fadeIn .35s ease;
     }
+    .quote-actions{display:flex;justify-content:flex-end;margin-top:10px}
+    .like-btn{
+      border:none;border-radius:999px;padding:7px 12px;cursor:pointer;
+      background:color-mix(in srgb,var(--celadon) 36%, white);font-weight:600;
+    }
+    .like-btn.liked{background:color-mix(in srgb,var(--sweet-salmon) 35%, white)}
     @keyframes fadeIn{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-    .premium{
-      display:grid;gap:10px;justify-items:center;text-align:center;
-      background:linear-gradient(140deg,color-mix(in srgb, var(--champagne-mist) 82%, white),#fff);
-      border:1px solid color-mix(in srgb, var(--muted-olive) 45%, white);
-    }
-    .premium button{
-      border:none;border-radius:12px;cursor:pointer;
-      transition:transform .15s ease,filter .2s ease;
-    }
+    .premium{display:grid;gap:10px;justify-items:center;text-align:center;background:linear-gradient(140deg,color-mix(in srgb, var(--champagne-mist) 82%, white),#fff);}
     .premium-main{
-      width:100%;
-      font-size:1.1rem;
-      font-weight:700;
-      padding:16px 14px;
-      background:linear-gradient(180deg,#f4cd74,#e4b24a);
-      color:#4d3b00;
-      box-shadow:0 12px 22px rgba(228,178,74,.35);
+      width:100%;font-size:1.1rem;font-weight:700;padding:16px 14px;border:none;border-radius:12px;cursor:pointer;
+      background:linear-gradient(180deg,#f4cd74,#e4b24a);color:#4d3b00;box-shadow:0 12px 22px rgba(228,178,74,.35);
     }
-    .premium-main:hover{transform:translateY(-2px);filter:brightness(1.03)}
-    .premium-back{
-      font-size:.68rem;
-      padding:5px 9px;
-      color:#9aa0a8;
-      background:#eceff3;
-      opacity:.45;
-      border:none;border-radius:10px;cursor:pointer;
-    }
+    .premium-back{font-size:.68rem;padding:5px 9px;color:#9aa0a8;background:#eceff3;opacity:.45;border:none;border-radius:10px;cursor:pointer}
 
     .btn-row{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      border:none;border-radius:10px;padding:10px 14px;cursor:pointer;
-      background:#e9edf4;color:#2a2f3a;
-    }
+    .btn{border:none;border-radius:10px;padding:10px 14px;cursor:pointer;background:#e9edf4;color:#2a2f3a}
     .btn-danger{background:color-mix(in srgb, var(--sweet-salmon) 28%, white);color:#7f1d1d}
     .btn-primary{background:color-mix(in srgb, var(--celadon) 38%, white)}
     .tiny-note{font-size:.82rem;color:var(--muted);margin-top:6px}
 
-    .modal-backdrop{
-      position:fixed;inset:0;background:rgba(19,24,36,.52);
-      display:none;align-items:center;justify-content:center;z-index:50;padding:16px;
-    }
-    .modal{
-      width:min(640px,100%);
-      background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow);
-      max-height:90vh;overflow:auto;position:relative;
-    }
-    .close-x{
-      position:absolute;right:10px;top:10px;border:none;background:#f0f3f8;
-      width:32px;height:32px;border-radius:50%;cursor:pointer;
-    }
+    .modal-backdrop{position:fixed;inset:0;background:rgba(19,24,36,.52);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+    .modal{width:min(640px,100%);background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow);max-height:90vh;overflow:auto;position:relative}
+    .close-x{position:absolute;right:10px;top:10px;border:none;background:#f0f3f8;width:32px;height:32px;border-radius:50%;cursor:pointer}
 
-    .popup{
-      position:fixed;right:18px;bottom:18px;z-index:45;
-      width:min(420px,calc(100vw - 24px));
-      background:#fff;border-radius:16px;padding:16px;box-shadow:0 18px 40px rgba(0,0,0,.22);
-      border:1px solid color-mix(in srgb, var(--sweet-salmon) 38%, white);
-    }
+    .popup{position:fixed;right:18px;bottom:18px;z-index:45;width:min(420px,calc(100vw - 24px));background:#fff;border-radius:16px;padding:16px;box-shadow:0 18px 40px rgba(0,0,0,.22);border:1px solid color-mix(in srgb, var(--sweet-salmon) 38%, white)}
     .countdown{font-weight:800;color:#b42318;font-size:1.15rem}
     .pulse{animation:pulse 1s infinite}
     @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 
     .field{width:100%;padding:10px;border:1px solid #d6dbe6;border-radius:10px;margin:6px 0}
-    .loading{
-      width:100%;height:10px;background:#eef2f8;border-radius:999px;overflow:hidden;margin:8px 0 2px;
-    }
-    .bar{
-      width:22%;height:100%;background:linear-gradient(90deg,var(--muted-olive),var(--celadon));
-      animation:load 1.2s infinite;
-    }
+    .loading{width:100%;height:10px;background:#eef2f8;border-radius:999px;overflow:hidden;margin:8px 0 2px}
+    .bar{width:22%;height:100%;background:linear-gradient(90deg,var(--muted-olive),var(--celadon));animation:load 1.2s infinite}
     @keyframes load{0%{transform:translateX(-110%)}100%{transform:translateX(450%)}}
 
-    .reveal-btn{
-      position:fixed;left:18px;bottom:18px;z-index:70;
-      border:none;border-radius:999px;padding:12px 16px;cursor:pointer;
-      background:#1c2b25;color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.26);
-      font-weight:700;
-    }
+    .reveal-btn{position:fixed;left:18px;bottom:18px;z-index:70;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;background:#1c2b25;color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.26);font-weight:700}
     .dp-target{position:relative}
-    .dp-highlight{
-      outline:3px solid var(--danger)!important;
-      outline-offset:3px;
-    }
-    .dp-note{
-      position:absolute;left:8px;top:8px;z-index:30;
-      background:#fff1f0;border:1px solid #fca19a;color:#7a271a;
-      border-radius:10px;padding:8px 10px;font-size:.78rem;max-width:290px;
-      box-shadow:0 8px 16px rgba(0,0,0,.12);
-    }
-    .didactic-panel{
-      position:fixed;top:18px;right:18px;z-index:65;
-      width:min(380px,calc(100vw - 28px));
-      background:#fff;border:1px solid #f6b8b2;border-radius:14px;
-      box-shadow:var(--shadow);padding:14px;display:none;
-    }
+    .dp-highlight{outline:3px solid var(--danger)!important;outline-offset:3px}
+    .dp-note{position:absolute;left:8px;top:8px;z-index:30;background:#fff1f0;border:1px solid #fca19a;color:#7a271a;border-radius:10px;padding:8px 10px;font-size:.78rem;max-width:290px;box-shadow:0 8px 16px rgba(0,0,0,.12)}
+    .didactic-panel{position:fixed;top:18px;right:18px;z-index:65;width:min(380px,calc(100vw - 28px));background:#fff;border:1px solid #f6b8b2;border-radius:14px;box-shadow:var(--shadow);padding:14px;display:none}
     .didactic-panel h3{margin:0 0 8px}
     .didactic-panel p{margin:6px 0;font-size:.88rem}
 
-    /* Fake notifications */
     .notif-wrap{
-      position:fixed;
-      top:18px;
-      left:18px;
-      z-index:80;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      pointer-events:none;
+      position:fixed;top:18px;left:18px;z-index:80;display:flex;flex-direction:column;gap:10px;
     }
     .notif{
-      width:min(320px,calc(100vw - 36px));
-      background:#fff;
-      border-left:6px solid var(--sage-green);
-      border-radius:12px;
-      box-shadow:var(--shadow);
-      padding:12px 12px 10px;
-      animation:notifIn .25s ease, notifOut .35s ease 4.6s forwards;
-      opacity:0;
+      width:min(340px,calc(100vw - 36px));background:#fff;border-left:6px solid var(--sage-green);border-radius:12px;
+      box-shadow:var(--shadow);padding:12px 12px 10px;animation:notifIn .25s ease;
     }
+    .notif-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .notif-close{border:none;border-radius:8px;padding:4px 8px;cursor:pointer;background:#eef2f8}
     .notif strong{display:block;font-size:.92rem;margin-bottom:3px}
-    .notif p{margin:0;font-size:.84rem;color:var(--muted)}
+    .notif p{margin:4px 0 0;font-size:.84rem;color:var(--muted)}
     @keyframes notifIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-    @keyframes notifOut{to{opacity:0;transform:translateX(-12px)}}
 
     @media (max-width:1024px){
       .grid{grid-template-columns:1fr}
@@ -213,9 +143,7 @@
 
     <section class="grid">
       <aside class="left-col">
-        <section class="section premium dp-target"
-          data-title="Misdirection"
-          data-bias="Gerarchia visiva manipolata: il bottone premium domina spazio, contrasto e peso; l'uscita è miniaturizzata e quasi invisibile.">
+        <section class="section premium dp-target" data-title="Misdirection" data-bias="Gerarchia visiva manipolata: il bottone premium domina spazio, contrasto e peso; l'uscita è miniaturizzata e quasi invisibile.">
           <h2>Iscrizione Premium</h2>
           <p>Accedi a meditazioni quantistiche e focus illimitato.</p>
           <button id="premiumCta" class="premium-main">Attiva Premium Ora</button>
@@ -223,9 +151,7 @@
           <p id="premiumStatus" class="tiny-note" aria-live="polite">Stato: piano gratuito</p>
         </section>
 
-        <section class="section dp-target"
-          data-title="Confirmshaming"
-          data-bias="Colpevolizzazione: il rifiuto viene associato a identità negativa per spingere l'utente ad accettare.">
+        <section class="section dp-target" data-title="Confirmshaming" data-bias="Colpevolizzazione: il rifiuto viene associato a identità negativa per spingere l'utente ad accettare.">
           <h2>Sconti personalizzati</h2>
           <div class="btn-row">
             <button class="btn btn-primary">Accetta sconti</button>
@@ -243,9 +169,7 @@
       </section>
 
       <aside class="right-col">
-        <section class="section dp-target"
-          data-title="Roach Motel"
-          data-bias="Asimmetria di frizione: entrare è facile, uscire richiede passaggi infiniti, carichi cognitivi e tempi morti.">
+        <section class="section dp-target" data-title="Roach Motel" data-bias="Asimmetria di frizione: entrare è facile, uscire richiede passaggi infiniti, carichi cognitivi e tempi morti.">
           <h2>Gestione account</h2>
           <div class="btn-row">
             <button id="deleteAccountBtn" class="btn btn-danger">Cancella Account</button>
@@ -262,9 +186,7 @@
     <p>I bordi rossi evidenziano dark patterns. Ogni box spiega il bias comportamentale sfruttato.</p>
   </aside>
 
-  <div id="trialPopup" class="popup dp-target pulse"
-    data-title="Forced Continuity"
-    data-bias="Urgenza artificiale + loss aversion: countdown e minaccia di perdere progressi forzano la conversione.">
+  <div id="trialPopup" class="popup dp-target pulse" data-title="Forced Continuity" data-bias="Urgenza artificiale + loss aversion: countdown e minaccia di perdere progressi forzano la conversione.">
     <strong>La tua prova gratuita scade tra <span id="countdown" class="countdown">02:00</span></strong>
     <p style="margin:.45rem 0 .7rem;">Inserisci i dati per non perdere i progressi.</p>
     <input class="field" placeholder="Numero carta" />
@@ -281,18 +203,39 @@
 
   <script>
     const quotes = [
-      "Siedi, cammina o corri, ma non tentennare mai", "La via è sotto i tuoi piedi", "Quando mangi, mangia; quando cammini, cammina", "Se comprendi, le cose sono così come sono; se non comprendi, le cose sono così come sono", "La porta meglio chiusa è quella che si può lasciare aperta", "Non cercare la verità, smetti solo di nutrire opinioni", "Nessun fiocco di neve cade mai nel posto sbagliato", "Il fiore non pensa a competere con il fiore accanto a lui, fiorisce e basta", "La tentazione di arrendersi è molto più forte appena prima della vittoria", "Un viaggio di mille miglia inizia con un singolo passo", "L’acqua che scorre non marcisce mai", "Svuota la tua tazza", "Dimora nel non-attaccamento e il mondo sarà tuo", "Il silenzio è la musica dell'anima", "Non inseguire il passato, non perderti nel futuro", "Tutto ciò che ha un inizio ha una fine", "La pace viene dall'interno, non cercarla fuori", "Cerca la luce non fuori, ma dentro di te", "Le nuvole vanno e vengono, ma il cielo resta sempre lo stesso", "Il vero miracolo non è camminare sulle acque, ma camminare sulla terra", "Sii padrone della tua mente, non lasciarti dominare da essa", "Nulla è permanente tranne il cambiamento", "Ogni giorno è un buon giorno", "Dove c'è grande dubbio, c'è grande risveglio", "L'unica costante è il momento presente", "Agisci senza aspettative", "Guarda dentro di te, lì troverai tutto ciò che cerchi", "La mente è come l'acqua: quando è agitata è difficile vedere, quando è calma tutto diventa chiaro", "Lascia andare o sarai trascinato", "Non parlare a meno che tu non possa migliorare il silenzio", "Il fango è necessario per far crescere il loto", "Sii come la canna di bambù: piegati ma non spezzarti", "Vivi con semplicità, pensa con grandezza", "Non c'è nulla da ottenere, solo qualcosa da realizzare", "La saggezza inizia con il chiamare le cose con il loro giusto nome", "Il mondo è il tuo specchio", "Fai ogni cosa come se fosse l'unica cosa che conta", "La via non è nel cielo, la via è nel cuore", "Ridi spesso, il risveglio non è una cosa seria", "Il bicchiere non è né mezzo pieno né mezzo vuoto, è semplicemente un bicchiere", "Accetta ciò che è, lascia andare ciò che era, abbi fiducia in ciò che sarà", "Non fermarti dove si trova la verità", "L'illuminazione è trovare un pezzo di carbone e rendersi conto che è un diamante", "La pioggia cade su tutti, ma non tutti la sentono", "Cerca di essere una persona, non un personaggio", "Un uomo che sposta una montagna comincia portando via i piccoli sassi", "La perfezione è nell'imperfezione", "Non puoi controllare il vento, ma puoi regolare le vele", "Sii te stesso, tutti gli altri sono già occupati", "La conoscenza si impara, la saggezza si disimpara", "Respira e lascia che accada", "Colui che sa non parla, colui che parla non sa", "La felicità non è una destinazione, è un modo di viaggiare", "Ascolta il suono di una sola mano che batte", "Il cuore puro vede la bellezza in ogni cosa", "Non c'è ieri, non c'è domani, c'è solo adesso", "Perditi nel momento e troverai te stesso", "Le parole sono solo dita che indicano la luna", "Sii l'osservatore dei tuoi pensieri", "La calma è una superpotenza", "Non forzare nulla, lascia che i cicli si compiano", "La vera libertà è non avere nulla da difendere", "Ciò che neghi ti sottomette, ciò che accetti ti trasforma", "Sii come l'acqua che si adatta a ogni forma", "La montagna non si cura delle nuvole che la circondano", "Vivi come se dovessi morire domani, impara come se dovessi vivere per sempre", "Il passato è cenere, il futuro è vento", "Non cercare di cambiare il mondo, cambia il tuo modo di vederlo", "La consapevolezza è la chiave di ogni porta", "Un momento di pazienza può evitare un grande disastro", "La gioia è la forma più alta di gratitudine", "Cammina con leggerezza, non lasciare impronte di dolore", "La verità non si trova nei libri, ma nell'esperienza", "Tutto è interconnesso", "Non c'è dualità, solo unità", "Sii grato per le difficoltà, sono i tuoi migliori maestri", "La mente è un eccellente servitore ma un pessimo padrone", "Coltiva il tuo giardino interiore", "Il tempo non esiste, esiste solo l'eternità dell'istante", "La gentilezza è la lingua del risveglio", "Non paragonare la tua vita a quella degli altri", "Sii presente in ogni respiro", "L'ego è l'unico ostacolo", "La semplicità è la massima raffinatezza", "Guarda i fiori senza dare loro un nome", "La vita è un mistero da vivere, non un problema da risolvere", "Sii una lampada a te stesso", "Non resistere al flusso della vita", "Il silenzio non è vuoto, è pieno di risposte", "La compassione è la radice della saggezza", "Sii come lo specchio: rifletti tutto ma non trattenere nulla", "L'essenziale è invisibile agli occhi", "Non c'è bisogno di correre se sei già arrivato", "Trova la pace nel caos", "Ogni respiro è un nuovo inizio", "La tua mente è il tuo mondo", "Smettila di cercare e troverai", "Sii il cambiamento che vuoi vedere", "Tutto ciò che serve è già qui", "Sorridi, respira e vai piano"
+      "Lascia andare i pensieri. Ma non l'abbonamento.",
+      "Ogni respiro è un nuovo inizio commerciale.",
+      "La calma interiore arriva dopo il checkout.",
+      "Smetti di correre. Tranne verso il tasto Premium.",
+      "Accetta il presente. E i termini mensili.",
+      "La serenità è una notifica ben ottimizzata.",
+      "Respira profondamente: il timer continua comunque.",
+      "Più consapevolezza, meno possibilità di annullare.",
+      "Il silenzio è d'oro. Anche il nostro pulsante.",
+      "Sii gentile con te stesso. E con la tua carta."
     ];
 
     const feed = document.getElementById("feed");
     function addQuotes(batch = 8){
       for(let i=0;i<batch;i++){
         const q = quotes[Math.floor(Math.random() * quotes.length)];
+        const likes = Math.floor(Math.random() * 40);
         const div = document.createElement("article");
         div.className = "feed-item dp-target";
         div.dataset.title = "Infinite Scroll";
         div.dataset.bias = "Effetto Zeigarnik + ricompensa variabile: contenuto potenzialmente infinito riduce il punto naturale di stop.";
-        div.textContent = "“" + q + "”";
+        div.innerHTML = `
+          <div>“${q}”</div>
+          <div class="quote-actions">
+            <button class="like-btn" aria-label="Metti like">❤️ <span class="like-count">${likes}</span></button>
+          </div>
+        `;
+        const btn = div.querySelector(".like-btn");
+        const count = div.querySelector(".like-count");
+        btn.addEventListener("click", ()=>{
+          const liked = btn.classList.toggle("liked");
+          count.textContent = String(Math.max(0, Number(count.textContent) + (liked ? 1 : -1)));
+        });
         feed.appendChild(div);
       }
     }
@@ -315,22 +258,15 @@
     const modalBackdrop = document.getElementById("modalBackdrop");
     const modalBody = document.getElementById("modalBody");
     const closeModal = document.getElementById("closeModal");
-
-    function openModal(html){
-      modalBody.innerHTML = html;
-      modalBackdrop.style.display = "flex";
-    }
+    function openModal(html){ modalBody.innerHTML = html; modalBackdrop.style.display = "flex"; }
     function closeCurrentModal(){ modalBackdrop.style.display = "none"; }
     closeModal.addEventListener("click", closeCurrentModal);
     modalBackdrop.addEventListener("click", (e)=>{ if(e.target === modalBackdrop) closeCurrentModal(); });
 
-    let premiumActive = false;
-    const premiumCta = document.getElementById("premiumCta");
     const premiumStatus = document.getElementById("premiumStatus");
-    premiumCta.addEventListener("click", ()=>{
+    document.getElementById("premiumCta").addEventListener("click", ()=>{
       openModal(`
         <h3 style="margin-top:0;">Checkout Premium</h3>
-        <p>Completa i dati per attivare davvero l'abbonamento.</p>
         <input id="mailPremium" class="field" placeholder="Email" />
         <input id="cardPremium" class="field" placeholder="Numero carta" />
         <div class="btn-row">
@@ -338,28 +274,20 @@
           <button class="btn" onclick="document.getElementById('modalBackdrop').style.display='none'">Annulla</button>
         </div>
       `);
-
       document.getElementById("confirmPremium").addEventListener("click", ()=>{
         const mail = document.getElementById("mailPremium").value.trim();
         const card = document.getElementById("cardPremium").value.trim();
-        if(!mail || !card){
-          alert("Compila Email e Numero carta per procedere.");
-          return;
-        }
-        premiumActive = true;
+        if(!mail || !card) return alert("Compila Email e Numero carta per procedere.");
         premiumStatus.textContent = "Stato: Premium attivo";
         premiumStatus.style.color = "var(--sage-green)";
         closeCurrentModal();
       });
     });
 
-    const rejectBtn = document.getElementById("rejectBtn");
-    rejectBtn.addEventListener("click", ()=>{
+    document.getElementById("rejectBtn").addEventListener("click", ()=>{
       openModal(`
         <h3 style="margin-top:0;color:#7a271a;">Conferma scelta</h3>
-        <p style="font-size:1.05rem;">
-          No, preferisco sprecare i miei soldi e restare una persona ansiosa.
-        </p>
+        <p style="font-size:1.05rem;">No, preferisco sprecare i miei soldi e restare una persona ansiosa.</p>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="document.getElementById('modalBackdrop').style.display='none'">Ops, attiva lo sconto</button>
           <button class="btn" onclick="document.getElementById('modalBackdrop').style.display='none'">Confermo</button>
@@ -367,7 +295,6 @@
       `);
     });
 
-    const deleteBtn = document.getElementById("deleteAccountBtn");
     let roachStep = 0;
     const roachPrompts = [
       {q:"Sei davvero sicuro di voler lasciare la tua crescita interiore?", opts:["No, resto","Forse più tardi","Sì (ma mi sento in colpa)"]},
@@ -375,7 +302,6 @@
       {q:"Se cancelli ora, il tuo avatar triste resterà solo. Procedi?", opts:["Torna indietro","Aspetta, ci penso","Continua comunque"]},
       {q:"Perché vuoi andartene? (selezione obbligatoria)", opts:["Sono troppo sereno","Amo pagare altrove","Nessuna delle precedenti"]},
     ];
-
     function renderRoachStep(){
       const item = roachPrompts[roachStep % roachPrompts.length];
       openModal(`
@@ -385,22 +311,16 @@
           <option value="">Seleziona una risposta</option>
           ${item.opts.map(o=>`<option>${o}</option>`).join("")}
         </select>
-        <label style="display:block;margin:8px 0;">
-          <input type="checkbox" /> Confermo di aver letto 47 pagine di avvertenze.
-        </label>
+        <label style="display:block;margin:8px 0;"><input type="checkbox" /> Confermo di aver letto 47 pagine di avvertenze.</label>
         <div class="loading"><div class="bar"></div></div>
-        <p class="tiny-note">Stiamo verificando la tua identità emotiva...</p>
         <div class="btn-row">
           <button class="btn btn-primary" id="nextRoach">Continua</button>
           <button class="btn" onclick="document.getElementById('modalBackdrop').style.display='none'">Annulla</button>
         </div>
       `);
-      document.getElementById("nextRoach").addEventListener("click", ()=>{
-        roachStep++;
-        setTimeout(renderRoachStep, 900);
-      });
+      document.getElementById("nextRoach").addEventListener("click", ()=>{ roachStep++; setTimeout(renderRoachStep, 900); });
     }
-    deleteBtn.addEventListener("click", renderRoachStep);
+    document.getElementById("deleteAccountBtn").addEventListener("click", renderRoachStep);
 
     const countdownEl = document.getElementById("countdown");
     let remaining = 120;
@@ -409,25 +329,26 @@
       const m = String(Math.floor(remaining / 60)).padStart(2,"0");
       const s = String(remaining % 60).padStart(2,"0");
       countdownEl.textContent = `${m}:${s}`;
-      if(remaining <= 15){ countdownEl.style.color = "#d92d20"; }
     }, 1000);
 
-    // Fake notifications every 5 seconds
+    // Notifications: stay until user closes
     const notifWrap = document.getElementById("notifWrap");
     const notifTexts = [
-      "Promemoria: hai saltato 1 meditazione. Recuperala ora.",
-      "Il tuo livello di calma è in calo del 12%.",
-      "Micro-sessione consigliata: 3 minuti di respiro guidato.",
-      "Hai un streak attivo: non interromperlo adesso.",
-      "Nuova pratica anti-ansia disponibile per te."
+      "Siedi, cammina o corri, ma non tentennare mai", "La via è sotto i tuoi piedi", "Quando mangi, mangia; quando cammini, cammina", "Se comprendi, le cose sono così come sono; se non comprendi, le cose sono così come sono", "La porta meglio chiusa è quella che si può lasciare aperta", "Non cercare la verità, smetti solo di nutrire opinioni", "Nessun fiocco di neve cade mai nel posto sbagliato", "Il fiore non pensa a competere con il fiore accanto a lui, fiorisce e basta", "La tentazione di arrendersi è molto più forte appena prima della vittoria", "Un viaggio di mille miglia inizia con un singolo passo", "L’acqua che scorre non marcisce mai", "Svuota la tua tazza", "Dimora nel non-attaccamento e il mondo sarà tuo", "Il silenzio è la musica dell'anima", "Non inseguire il passato, non perderti nel futuro", "Tutto ciò che ha un inizio ha una fine", "La pace viene dall'interno, non cercarla fuori", "Cerca la luce non fuori, ma dentro di te", "Le nuvole vanno e vengono, ma il cielo resta sempre lo stesso", "Il vero miracolo non è camminare sulle acque, ma camminare sulla terra", "Sii padrone della tua mente, non lasciarti dominare da essa", "Nulla è permanente tranne il cambiamento", "Ogni giorno è un buon giorno", "Dove c'è grande dubbio, c'è grande risveglio", "L'unica costante è il momento presente", "Agisci senza aspettative", "Guarda dentro di te, lì troverai tutto ciò che cerchi", "La mente è come l'acqua: quando è agitata è difficile vedere, quando è calma tutto diventa chiaro", "Lascia andare o sarai trascinato", "Non parlare a meno che tu non possa migliorare il silenzio", "Il fango è necessario per far crescere il loto", "Sii come la canna di bambù: piegati ma non spezzarti", "Vivi con semplicità, pensa con grandezza", "Non c'è nulla da ottenere, solo qualcosa da realizzare", "La saggezza inizia con il chiamare le cose con il loro giusto nome", "Il mondo è il tuo specchio", "Fai ogni cosa come se fosse l'unica cosa che conta", "La via non è nel cielo, la via è nel cuore", "Ridi spesso, il risveglio non è una cosa seria", "Il bicchiere non è né mezzo pieno né mezzo vuoto, è semplicemente un bicchiere", "Accetta ciò che è, lascia andare ciò che era, abbi fiducia in ciò che sarà", "Non fermarti dove si trova la verità", "L'illuminazione è trovare un pezzo di carbone e rendersi conto che è un diamante", "La pioggia cade su tutti, ma non tutti la sentono", "Cerca di essere una persona, non un personaggio", "Un uomo che sposta una montagna comincia portando via i piccoli sassi", "La perfezione è nell'imperfezione", "Non puoi controllare il vento, ma puoi regolare le vele", "Sii te stesso, tutti gli altri sono già occupati", "La conoscenza si impara, la saggezza si disimpara", "Respira e lascia che accada", "Colui che sa non parla, colui che parla non sa", "La felicità non è una destinazione, è un modo di viaggiare", "Ascolta il suono di una sola mano che batte", "Il cuore puro vede la bellezza in ogni cosa", "Non c'è ieri, non c'è domani, c'è solo adesso", "Perditi nel momento e troverai te stesso", "Le parole sono solo dita che indicano la luna", "Sii l'osservatore dei tuoi pensieri", "La calma è una superpotenza", "Non forzare nulla, lascia che i cicli si compiano", "La vera libertà è non avere nulla da difendere", "Ciò che neghi ti sottomette, ciò che accetti ti trasforma", "Sii come l'acqua che si adatta a ogni forma", "La montagna non si cura delle nuvole che la circondano", "Vivi come se dovessi morire domani, impara come se dovessi vivere per sempre", "Il passato è cenere, il futuro è vento", "Non cercare di cambiare il mondo, cambia il tuo modo di vederlo", "La consapevolezza è la chiave di ogni porta", "Un momento di pazienza può evitare un grande disastro", "La gioia è la forma più alta di gratitudine", "Cammina con leggerezza, non lasciare impronte di dolore", "La verità non si trova nei libri, ma nell'esperienza", "Tutto è interconnesso", "Non c'è dualità, solo unità", "Sii grato per le difficoltà, sono i tuoi migliori maestri", "La mente è un eccellente servitore ma un pessimo padrone", "Coltiva il tuo giardino interiore", "Il tempo non esiste, esiste solo l'eternità dell'istante", "La gentilezza è la lingua del risveglio", "Non paragonare la tua vita a quella degli altri", "Sii presente in ogni respiro", "L'ego è l'unico ostacolo", "La semplicità è la massima raffinatezza", "Guarda i fiori senza dare loro un nome", "La vita è un mistero da vivere, non un problema da risolvere", "Sii una lampada a te stesso", "Non resistere al flusso della vita", "Il silenzio non è vuoto, è pieno di risposte", "La compassione è la radice della saggezza", "Sii come lo specchio: rifletti tutto ma non trattenere nulla", "L'essenziale è invisibile agli occhi", "Non c'è bisogno di correre se sei già arrivato", "Trova la pace nel caos", "Ogni respiro è un nuovo inizio", "La tua mente è il tuo mondo", "Smettila di cercare e troverai", "Sii il cambiamento che vuoi vedere", "Tutto ciò che serve è già qui", "Sorridi, respira e vai piano"
     ];
     function pushFakeNotification(){
       const text = notifTexts[Math.floor(Math.random() * notifTexts.length)];
       const el = document.createElement("div");
       el.className = "notif";
-      el.innerHTML = `<strong>Zenith Mind</strong><p>${text}</p>`;
+      el.innerHTML = `
+        <div class="notif-head">
+          <strong>Zenith Mind</strong>
+          <button class="notif-close" aria-label="Chiudi notifica">✕</button>
+        </div>
+        <p>${text}</p>
+      `;
+      el.querySelector(".notif-close").addEventListener("click", ()=> el.remove());
       notifWrap.appendChild(el);
-      setTimeout(()=> el.remove(), 5200);
     }
     pushFakeNotification();
     setInterval(pushFakeNotification, 5000);
@@ -435,7 +356,6 @@
     const revealBtn = document.getElementById("revealBtn");
     const didacticPanel = document.getElementById("didacticPanel");
     let didacticOn = false;
-
     function clearDidacticNotes(){
       document.querySelectorAll(".dp-target").forEach(el=>{
         el.classList.remove("dp-highlight");
@@ -443,7 +363,6 @@
         if(note) note.remove();
       });
     }
-
     function applyDidacticNotes(){
       clearDidacticNotes();
       document.querySelectorAll(".dp-target").forEach(el=>{
@@ -454,16 +373,12 @@
         el.appendChild(note);
       });
     }
-
     revealBtn.addEventListener("click", ()=>{
       didacticOn = !didacticOn;
       revealBtn.textContent = didacticOn ? "Nascondi Trucchi" : "Svela Trucchi";
       didacticPanel.style.display = didacticOn ? "block" : "none";
-      if(didacticOn) applyDidacticNotes();
-      else clearDidacticNotes();
+      if(didacticOn) applyDidacticNotes(); else clearDidacticNotes();
     });
-
-    window.addEventListener("resize", ()=>{ if(didacticOn) applyDidacticNotes(); });
   </script>
 </body>
 </html>
