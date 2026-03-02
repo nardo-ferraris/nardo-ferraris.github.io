@@ -494,7 +494,7 @@
         const hiddenExit = $("hiddenExit");
         if(hiddenExit){
           hiddenExit.addEventListener("click", () => {
-            if(scrolledMs < 1000){
+            if(scrolledMs < 10000){
               alert("Accesso negato: scorri il feed per almeno 10 secondi prima della disiscrizione reale.");
               return;
             }
